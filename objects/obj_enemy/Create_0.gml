@@ -1,7 +1,7 @@
 
 event_inherited();
 
-spd = .5
+spd = 1
 
 hp = 2
 

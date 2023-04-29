@@ -1,6 +1,10 @@
 depth = -y
 mytarget = instance_nearest(x,y,obj_enemy)
-if distance_to_object(mytarget) < 128
+if (x > room_width) or (x < 0) or (y > room_height) or (y < 0)
+	{
+	move_towards_point(room_width/2,room_height/2,3);
+	}
+else if distance_to_object(mytarget) < 12
 	{
 	
 	move_towards_point(mytarget.x,mytarget.y,spd)

@@ -3,6 +3,11 @@ if (!global.paused) {
 	keydown = keyboard_check(vk_down)
 	keyleft = keyboard_check(vk_left)
 	keyright = keyboard_check(vk_right)
+	
+	keyup = keyboard_check(ord("W"))
+	keydown = keyboard_check(ord("S"))
+	keyleft = keyboard_check(ord("A"))
+	keyright = keyboard_check(ord("D"))
 
 	depth = -y
 
@@ -197,10 +202,11 @@ if (!global.paused) {
 			}
 		}
 
-	if xp >= leveltable[level] and level < (array_length(leveltable)-1)
+	if xp >= leveltable
 		{
 		level += 1
-		xp -= leveltable[level-1]
+		xp -= leveltable
+		leveltable *= 2
 		}
 		
 	
