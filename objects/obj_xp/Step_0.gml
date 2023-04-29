@@ -1,3 +1,5 @@
+depth = -y
+
 if !global.paused
 {
 if distance_to_object(obj_player) < range

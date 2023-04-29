@@ -1,15 +1,12 @@
 {
-  "spriteId": {
-    "name": "spr_cat",
-    "path": "sprites/spr_cat/spr_cat.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_ally",
-    "path": "objects/obj_ally/obj_ally.yy",
+    "name": "obj_enemy",
+    "path": "objects/obj_enemy/obj_enemy.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -35,7 +32,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_cat",
+  "name": "obj_nme",
   "tags": [],
   "resourceType": "GMObject",
 }

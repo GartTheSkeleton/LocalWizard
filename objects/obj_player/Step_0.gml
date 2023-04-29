@@ -39,17 +39,11 @@ if (!global.paused) {
 		repaircooldown -= 1
 		}
 
-	nearestobject = instance_nearest(x,y,obj_object)
+	nearestobject = instance_nearest(x,y,obj_structure)
+	nearestenemy = instance_nearest(x,y,obj_enemy)
 
-	if nearestobject.object_index = obj_structure
-		{
-		if nearestobject.hp >= nearestobject.maxhp or repaircooldown != 0
-			{
-			nearestobject = instance_nearest(x,y,obj_enemy)
-			}
-		}
 
-	if distance_to_object(nearestobject) <= range
+	if distance_to_object(nearestobject) <= range or distance_to_object(nearestenemy) <= range
 		{
 		action = true
 		}
@@ -60,10 +54,10 @@ if (!global.paused) {
 	
 	if action = true
 		{
-		targetspotx = nearestobject.x
-		targetspoty = nearestobject.y
+		targetspotx = nearestenemy.x
+		targetspoty = nearestenemy.y
 	
-		if nearestobject.object_index = obj_enemy
+		if distance_to_object(nearestenemy) <= range
 			{
 			//attack
 			if attackcooldown = 0
@@ -190,7 +184,7 @@ if (!global.paused) {
 				attackcooldown = attackspeed
 				}
 			}
-		if nearestobject.object_index = obj_structure
+		if distance_to_object(nearestobject) < 128
 			{
 			//repair
 			if repaircooldown = 0

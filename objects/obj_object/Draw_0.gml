@@ -1,3 +1,3 @@
 draw_self()
 
-draw_text(x,y+12,hp)
+draw_text(x,y+12,string(hp)+" hp")

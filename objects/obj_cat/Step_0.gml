@@ -20,9 +20,14 @@ if distance_to_object(mytarget) > 128
 		//	moving = false
 		//	}
 		
+		
 		moving = !moving
 		
 		idletimer = 0
+		}
+	else
+		{
+		speed = 0
 		}
 	if moving = true
 			{
@@ -35,5 +40,12 @@ if distance_to_object(mytarget) > 128
 					{facing = 1}
 				}
 			}
+	}
+
+if obj_chronos.tod = "Day" and instance_number(obj_enemy) = 1
+	{
+	move_towards_point(obj_player.x,obj_player.y,1)
+	if distance_to_point(obj_player.x,obj_player.y) < 64
+		{speed = 0}
 	}
 

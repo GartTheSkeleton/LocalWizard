@@ -2,7 +2,7 @@ if (!global.paused)
 	{
 	depth = -y
 	
-	if distance_to_object(obj_structure) <= 16
+	if distance_to_object(obj_structure) <= atkrange
 		{
 		speed = 0
 		mytarget = instance_nearest(x,y,obj_structure)
@@ -20,19 +20,19 @@ if (!global.paused)
 			switch dir
 				{
 				case "above":
-				instance_create_depth(x,y-64,depth,obj_enemyattack)
+				instance_create_depth(x,y-atkrange,depth,obj_enemyattack)
 				break;
 				
 				case "below":
-				instance_create_depth(x,y+64,depth,obj_enemyattack)
+				instance_create_depth(x,y+atkrange,depth,obj_enemyattack)
 				break;
 				
 				case "left":
-				instance_create_depth(x-64,y,depth,obj_enemyattack)
+				instance_create_depth(x-atkrange,y,depth,obj_enemyattack)
 				break;
 				
 				case "right":
-				instance_create_depth(x+64,y,depth,obj_enemyattack)
+				instance_create_depth(x+atkrange,y,depth,obj_enemyattack)
 				break;
 				
 				default:
@@ -44,7 +44,7 @@ if (!global.paused)
 			}
 		//attack the structure
 		}
-	else if distance_to_object(obj_player) <= 16
+	else if distance_to_object(obj_player) <= atkrange
 		{
 		speed = 0
 		speed = 0
@@ -63,19 +63,19 @@ if (!global.paused)
 			switch dir
 				{
 				case "above":
-				instance_create_depth(x,y-64,depth,obj_enemyattack)
+				instance_create_depth(x,y-atkrange,depth,obj_enemyattack)
 				break;
 				
 				case "below":
-				instance_create_depth(x,y+64,depth,obj_enemyattack)
+				instance_create_depth(x,y+atkrange,depth,obj_enemyattack)
 				break;
 				
 				case "left":
-				instance_create_depth(x-64,y,depth,obj_enemyattack)
+				instance_create_depth(x-atkrange,y,depth,obj_enemyattack)
 				break;
 				
 				case "right":
-				instance_create_depth(x+64,y,depth,obj_enemyattack)
+				instance_create_depth(x+atkrange,y,depth,obj_enemyattack)
 				break;
 				
 				default:
@@ -85,6 +85,50 @@ if (!global.paused)
 			readytoattack = false
 			attackwindup = 0
 			}
+		
+		}
+	else if distance_to_object(obj_ally) <= atkrange
+		{
+		speed = 0
+		speed = 0
+		mytarget = instance_nearest(x,y,obj_ally)
+		
+		attackwindup += 1
+		
+		if attackwindup >= 60
+			{
+			readytoattack = true
+			}
+		
+		if readytoattack = true
+			{
+			dir = calculate_direction(mytarget)
+			switch dir
+				{
+				case "above":
+				instance_create_depth(x,y-atkrange,depth,obj_enemyattack)
+				break;
+				
+				case "below":
+				instance_create_depth(x,y+atkrange,depth,obj_enemyattack)
+				break;
+				
+				case "left":
+				instance_create_depth(x-atkrange,y,depth,obj_enemyattack)
+				break;
+				
+				case "right":
+				instance_create_depth(x+atkrange,y,depth,obj_enemyattack)
+				break;
+				
+				default:
+				instance_create_depth(x,y,depth,obj_enemyattack)
+				break;
+				}
+			readytoattack = false
+			attackwindup = 0
+			}
+		
 		}
 	else
 		{
@@ -104,9 +148,14 @@ if (!global.paused)
 			}
 		}
 	
+	
 	if hp <= 0
 		{
-		instance_create_depth(x,y,depth,obj_corpse)
+		var _mycorpse = instance_create_depth(x,y,depth,obj_corpse)
+			{
+			_mycorpse.sprite_index = deathsprite
+			}
+		
 		var _choose = choose(1,1,1,2,2,3)
 	
 		for (i=0;i<_choose;i++)

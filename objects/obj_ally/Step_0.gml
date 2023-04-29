@@ -4,7 +4,7 @@ if (x > room_width) or (x < 0) or (y > room_height) or (y < 0)
 	{
 	move_towards_point(room_width/2,room_height/2,3);
 	}
-else if distance_to_object(mytarget) < 12
+else if distance_to_object(mytarget) < 64
 	{
 	
 	move_towards_point(mytarget.x,mytarget.y,spd)
@@ -20,4 +20,10 @@ else if distance_to_object(mytarget) < 12
 			}
 		
 		}
+	}
+
+if hp <= 0
+	{
+	instance_create_depth(x,y,depth,obj_grave)
+	instance_destroy(self)
 	}

@@ -24,3 +24,8 @@ if tod = "Night"
 		tod = "Day"
 		}
 	}
+	
+if keyboard_check_pressed(ord("1"))
+	{
+	global.debug = !global.debug
+	}

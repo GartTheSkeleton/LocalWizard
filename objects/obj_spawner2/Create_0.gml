@@ -7,3 +7,6 @@ move_angle = 15; // Angle increment for spawner movement
 // Set the initial position of the spawner outside the room
 x = room_width + 100 * cos(degtorad(angle));
 y = room_height + 100 * sin(degtorad(angle));
+
+
+currentenemy = obj_enemy
