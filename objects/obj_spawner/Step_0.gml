@@ -1,35 +1,28 @@
-if (!global.paused) {
-	timer += 1
+// Spawning logic
+spawn_timer++;
 
-	if timer > 120
-		{
-		for (i=0;i<(level*3);i++)
-			{
-			instance_create_depth(x,y,depth,obj_enemy)
-			xp += 1
-			newxy = choose(
-			[-100,-100],
-			[room_width/2,-100],
-			[room_width+100,-100],
-			[room_width/2,room_height+100],
-			[room_width+100,room_height+100],
-			[-100,room_height+100],
-			[room_width/4,-100],
-			[room_width/4,room_height+100],
-			[room_width+100,room_height/2],
-			[-100,room_height/2],
-			[-100,room_height/4],
-			[room_width+100,room_height/4]
-			)
-			x = newxy[0]
-			y = newxy[1]
-			}
-		timer = 0
-		}
-
-	if xp > level*200
-		{
-		level += 1
-		xp = 0
-		}
+if obj_chronos.tod = "Night"
+{
+	if (spawn_timer >= spawn_interval/global.day) {
+	    instance_create_layer(x, y, "Instances", currentenemy);
+	    spawn_timer = 0;
+	}
 }
+
+// Move spawner 15 degrees left or right around the room's edge
+angle += choose(-move_angle, move_angle,move_angle*2,-move_angle*2,move_angle/2,-move_angle/2);
+
+if global.day > 2
+	{
+	currentenemy = choose(obj_enemy,obj_enemy,obj_enemy,obj_orc)
+	}
+	
+if global.day > 5
+	{
+	currentenemy = choose(obj_enemy,obj_enemy,obj_orc)
+	}
+
+
+// Update the spawner's position
+x = room_width/2  + ((room_width) * cos(degtorad(angle)));
+y = room_height/2  + ((room_height) * sin(degtorad(angle)));

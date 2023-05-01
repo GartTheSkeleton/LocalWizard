@@ -16,6 +16,7 @@ if pickedup = true
 if distance_to_object(obj_player) < 32
 	{
 	obj_player.xp += 1
+	obj_player.gems += 1
 	instance_destroy(self)
 	}
 

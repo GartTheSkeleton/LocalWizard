@@ -195,7 +195,7 @@ if (!global.paused) {
 				}
 			}
 		}
-
+	//xp and levelling
 	if xp >= leveltable
 		{
 		level += 1
@@ -214,3 +214,15 @@ if (!global.paused) {
 			}
 		}
 }
+
+//camera shake stuff (I know this shouldn't just be tacked onto the player sue me I'm lazy)
+if (global.shake_duration > 0) {
+    var shake_x = random_range(-global.shake_intensity, global.shake_intensity);
+    var shake_y = random_range(-global.shake_intensity, global.shake_intensity);
+    camera_set_view_pos(view_camera[0], camera_get_view_x(view_camera[0]) + shake_x, camera_get_view_y(view_camera[0]) + shake_y);
+    global.shake_duration -= 1;
+} else {
+    global.shake_intensity = 0;
+    camera_set_view_pos(view_camera[0], camera_get_view_x(view_camera[0]), camera_get_view_y(view_camera[0]));
+}
+

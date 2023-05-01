@@ -5,8 +5,14 @@ if place_meeting(x,y,obj_structure)
 	}
 else if place_meeting(x,y,obj_player) && obj_player.iframe = false
 	{
-	obj_player.hp -= damage
-	obj_player.iframe = true
+	with obj_player
+		{
+		iframe = true
+		hp -= damage
+		camera_shake(30,16)
+		audio_play_sound(sfx_hit1,1,false)
+		}
+
 	instance_destroy(self)
 	}
 else if place_meeting(x,y,obj_ally)
